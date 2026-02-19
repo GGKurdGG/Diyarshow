@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diyarshow - Elite Digital Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;600;900&display=swap');
+
+        :root {
+            --primary-glow: #00f2ea;
+            --secondary-glow: #7000ff;
+            --accent-color: #ffffff;
+            --bg-dark: #050505;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Noto Sans Arabic', sans-serif;
+            background-color: var(--bg-dark);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Animated Abstract Background */
+        .bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #1a0033 0%, #050505 100%);
+        }
+
+        .orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--secondary-glow);
+            filter: blur(120px);
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: float-orb 10s infinite alternate;
+        }
+
+        @keyframes float-orb {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(20%, 30%); }
+        }
+
+        .container {
+            position: relative;
+            max-width: 420px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* --- Hexagon Logo --- */
+        .hexagon-wrapper {
+            position: relative;
+            width: 120px;
+            height: 130px;
+            margin: 0 auto 20px;
+            background: var(--primary-glow);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse-border 2s infinite;
+        }
+
+        .hexagon-inner {
+            width: 110px;
+            height: 120px;
+            background: #111;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hexagon-inner i {
+            font-size: 50px;
+            color: var(--primary-glow);
+            text-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        @keyframes pulse-border {
+            0% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.05); filter: brightness(1.3); }
+            100% { transform: scale(1); filter: brightness(1); }
+        }
+
+        h1 {
+            font-size: 38px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin: 10px 0;
+            background: linear-gradient(to right, #fff, var(--primary-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Glassmorphism Cards --- */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            text-align: right;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #ddd;
+        }
+
+        .feature-item i {
+            width: 30px;
+            height: 30px;
+            background: rgba(0, 242, 234, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-glow);
+        }
+
+        /* --- Action Buttons --- */
+        .cta-button {
+            display: block;
+            background: var(--accent-color);
+            color: #000;
+            text-decoration: none;
+            padding: 18px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 18px;
+            margin-top: 10px;
+            transition: 0.4s;
+            box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            background: var(--primary-glow);
+        }
+
+        /* --- Social Grid --- */
+        .grid-menu {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .grid-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 20px;
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grid-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-glow);
+            transform: scale(1.02);
+        }
+
+        .grid-item i {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        /* --- Specific Brand Colors --- */
+        .phone-highlight {
+            grid-column: span 2;
+            background: linear-gradient(90deg, #00f2ea, #7000ff);
+            border: none;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .fa-whatsapp { color: #25D366; }
+        .fa-instagram { color: #E1306C; }
+        .fa-snapchat { color: #FFFC00; }
+        .fa-tiktok { color: #fff; text-shadow: 2px 2px #ff0050, -2px -2px #00f2ea; }
+
+        footer {
+            margin-top: 40px;
+            font-size: 10px;
+            color: #555;
+            letter-spacing: 2px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="bg-canvas">
+    <div class="orb"></div>
+</div>
+
+<div class="container">
+    <div class="hexagon-wrapper">
+        <div class="hexagon-inner">
+            <i class="fa-solid fa-bolt-lightning"></i>
+        </div>
+    </div>
+
+    <h1>DIYARSHOW</h1>
+    <p style="color: #888; margin-bottom: 30px;">پیشەنگ د جیهانا تەکنەلۆژیایێ دا</p>
+
+    <div class="glass-card">
+        <div class="feature-list">
+            <div class="feature-item">
+                <i class="fa-solid fa-star"></i>
+                <span>پێشکێشکرنا باشترین خزمەتگۆزاریێن دیتال</span>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>گرەنتی و باوەریا تەواو د کارکرنێ دا</span>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-rocket"></i>
+                <span>بلەزترین چارەسەری بۆ کێشەیێن تەکنیکی</span>
+            </div>
+        </div>
+        
+        <a href="https://wa.me/9647504045736" class="cta-button">
+            <i class="fa-solid fa-paper-plane"></i> &nbsp; پەیوەندیێ بکە
+        </a>
+    </div>
+
+    <div class="grid-menu">
+        <a href="tel:+9647504045736" class="grid-item phone-highlight">
+            <i class="fa-solid fa-phone-volume"></i>
+            <span style="direction: ltr;">0750 404 5736</span>
+        </a>
+
+        <a href="#" class="grid-item">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>واتسئاپ</span>
+        </a>
+
+        <a href="#" class="grid-item">
+            <i class="fa-brands fa-instagram"></i>
+            <span>ئینستاگرام</span>
+        </a>
+
+        <a href="#" class="grid-item">
+            <i class="fa-brands fa-tiktok"></i>
+            <span>تیکتۆک</span>
+        </a>
+
+        <a href="#" class="grid-item">
+            <i class="fa-brands fa-snapchat"></i>
+            <span>سناپچات</span>
+        </a>
+    </div>
+
+    <footer>
+        © 2026 DIYARSHOW | INNOVATION & STYLE
+    </footer>
+</div>
+
+</body>
+</html>
